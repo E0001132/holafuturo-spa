@@ -1,0 +1,15 @@
+.cmp-micomponente {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+
+    &--linkable {
+        border-color: blue;
+        cursor: pointer;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 1.5rem;
+    }
+}

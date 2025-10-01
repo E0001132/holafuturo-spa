@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/holafuturospa" mode="merge"/>
+    <filter root="/content/holafuturospa" mode="merge"/>
+    <filter root="/content/dam/holafuturospa" mode="merge">
+        <exclude pattern="/content/dam/holafuturospa(/.*)?"/>
+        <include pattern="/content/dam/holafuturospa/jcr:content(/.*)?"/>
+    </filter>
+    <filter root="/content/dam/holafuturospa/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/holafuturospa" mode="merge"/>
+</workspaceFilter>
