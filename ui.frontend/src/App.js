@@ -5,7 +5,7 @@ import React from 'react';
 class App extends Page {
   render() {
     return (
-      <div>
+      <div className="gcr" data-title={'GCR'}>
         {this.childComponents}
         {this.childPages}
       </div>

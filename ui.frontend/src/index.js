@@ -21,6 +21,7 @@ const renderApp = () => {
     ModelManager.initialize(modelManagerOptions).then(pageModel => {
         const history = createBrowserHistory();
         render(
+            
             <Router history={history}>
                 <App
                     history={history}

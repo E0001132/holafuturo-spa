@@ -15,21 +15,29 @@ interface FullMiComponenteProps extends MiComponenteProps, ContainerStateProps {
     // AEM automáticamente agrega estas propiedades para la edición:
     cqPath?: string;      // Ruta del componente en JCR
     isInEditor: boolean; // True si el componente está siendo editado en AEM
+    text: string;
 }
 
 // Componente React funcional
 const MiComponente: React.FC<FullMiComponenteProps> = (props) => {
     // Si no hay título ni descripción, y NO estamos en el editor de AEM, no renderizar nada.
+    
+        console.log("MiComponente", props);
+
+
     if (!props.title && !props.description && !props.isInEditor) {
         return null;
     }
 
-    const titleText = props.title || (props.isInEditor ? 'Haz doble clic para editar el Título' : '');
+
+    const titleText = props.text || (props.isInEditor ? 'Haz doble clic para editar el Título' : '');
     const descriptionText = props.description || (props.isInEditor ? 'Añade una descripción aquí' : '');
+        console.log("titleText", titleText);
 
     return (
         <div className={`cmp-micomponente ${props.isLink ? 'cmp-micomponente--linkable' : ''}`}>
             <h2>{titleText}</h2>
+            <p>Prueba desde REACT</p>
             <p>{descriptionText}</p>
             {
                 props.isInEditor && !props.title && (
