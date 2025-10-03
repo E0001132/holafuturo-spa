@@ -21,24 +21,23 @@ interface FullMiComponenteProps extends MiComponenteProps, ContainerStateProps {
 // Componente React funcional
 const MiComponente: React.FC<FullMiComponenteProps> = (props) => {
     // Si no hay título ni descripción, y NO estamos en el editor de AEM, no renderizar nada.
-    
-        console.log("MiComponente", props);
 
+    console.log("MiComponente", props);
 
-    if (!props.title && !props.description && !props.isInEditor) {
-        return null;
-    }
+    /*
+        if (!props.title && !props.description && !props.isInEditor) {
+            return null;
+        }
+    */
 
-
-    const titleText = props.text || (props.isInEditor ? 'Haz doble clic para editar el Título' : '');
+    const titleText = props.title || (props.isInEditor ? 'Haz doble clic para editar el Título' : '');
     const descriptionText = props.description || (props.isInEditor ? 'Añade una descripción aquí' : '');
-        console.log("titleText", titleText);
+    console.log("titleText", titleText);
 
     return (
         <div className={`cmp-micomponente ${props.isLink ? 'cmp-micomponente--linkable' : ''}`}>
-            <h2>{titleText}</h2>
-            <p>Prueba desde REACT</p>
-            <p>{descriptionText}</p>
+            <h2>Titulo: {titleText}</h2>
+            <p>Descripcion: {descriptionText}</p>
             {
                 props.isInEditor && !props.title && (
                     <p style={{ color: 'red' }}>Componente vacío: Título requerido.</p>
@@ -51,5 +50,15 @@ const MiComponente: React.FC<FullMiComponenteProps> = (props) => {
 // Exportar el componente
 export default MiComponente;
 
+const MiComponenteConfig = {
+    title: String,       // Ejemplo: el título ingresado en el diálogo de AEM
+    description: String, // Ejemplo: un campo de texto
+    isLink: Boolean,     // Ejemplo: un checkbox (boolean)
+
+    isEmpty: function (props: { title: { trim: () => { (): any; new(): any; length: number; }; }; }) {
+        return !props || !props.title || props.title.trim().length < 1;
+    }
+};
+
 // El resourceType debe coincidir con la ruta en ui.apps/src/main/content/jcr_root/apps/holafuturospa/components/micomponente
-MapTo('holafuturospa/components/micomponente')(MiComponente);
+MapTo('holafuturospa/components/micomponente')(MiComponente, MiComponenteConfig);
